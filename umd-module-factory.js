@@ -1,6 +1,8 @@
 // UMD module factory.js
 // example of a UMD (Universal Module Definition) for a JavaScript library contained in a function:
 
+// minified: (function(a,b,c){"object"==typeof exports&&"undefined"!=typeof module?module.exports=c():"function"==typeof define&&define.amd?define(c):b[a]=c()})("foo",this,function(){var a=function(b){a.bar=b}/*...*/;return a});
+
 (function(name, global, factory) {
   typeof exports === "object" && typeof module !== "undefined"
   ? module.exports = factory()
