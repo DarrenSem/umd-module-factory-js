@@ -1,17 +1,17 @@
 // UMD module factory.js
 // example of a UMD (Universal Module Definition) for a JavaScript library contained in a function:
 
-// minified: (function(a,b,c){"object"==typeof exports&&"undefined"!=typeof module?module.exports=c():"function"==typeof define&&define.amd?define(c):b[a]=c()})("foo",this,function(){var a=function(b){a.bar=b}/*...*/;return a});
+// minified: (function(a,b,c){"object"==typeof exports&&"undefined"!=typeof module?module.exports=c(/*require("bar"),require("baz")*/):"function"==typeof define&&define.amd?define([/*"bar","baz"*/],c):b[a]=c(/*b.bar,b.baz*/)})("foo",this,function(/*r,z*/){var a=function(b){a.bar=b}/*...*/;return a});
 
 (function(name, global, factory) {
   typeof exports === "object" && typeof module !== "undefined"
-  ? module.exports = factory()
+  ? module.exports = factory(/*require("dep1"), require("dep1")*/)
   : typeof define === "function" && define.amd
-  ? define(factory)
+  ? define([/*"dep1", "dep2"*/], factory)
   : (
-    global[name] = factory()
+    global[name] = factory(/*global.dep1, global.dep2*/)
   );
-})("foo", this, (function () {
+})("foo", this, (function(/*mod1, mod2*/) {
 
   var bar = function(v){
     return v + String(v).length;
